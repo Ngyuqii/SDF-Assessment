@@ -28,7 +28,7 @@ public class Main {
             }   
             else if (inputArray.length != 3) {
                 System.out.println("You have entered an invalid command.");
-                continue;
+                continue; //Allow user to key in again
             }
             
             //Assigning action / values to variables
@@ -80,6 +80,9 @@ public class Main {
                 finalValue = value1 * value2;
                 System.out.printf("%.2f\n", finalValue);
                 break;
+
+                default:
+                System.out.println("Please key in an operator > + - * /.");
             
             }
             

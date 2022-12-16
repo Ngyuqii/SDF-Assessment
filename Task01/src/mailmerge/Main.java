@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        //javac -sourcepath src -d classes task01/src/mailmerge/*.java
+        //javac -sourcepath src -d classes src/mailmerge/*.java
         //java -cp classes mailmerge.Main <csv file> <template file>
         String custFile = args[0];
         String temFile = args[1];
@@ -46,16 +46,15 @@ public class Main {
             String line;
             while ((line = br.readLine()) != null) {
                 allCust.add(line);
-                line = br.readLine();
             }
 
             //All customers to be mapped
-            for (int m=0; m < allCust.size(); m++ ) {
+            for (int m=0; m < allCust.size(); m++) {
 
                 String oneCust = allCust.get(m);
                 String[] custDetails = oneCust.trim().split(","); //split into individual detail
 
-                //Map values to each key
+                //Map value to each key
                 for (int i =0; i < headerFields.length; i++) {
                     custMap.put(headerFields[i], custDetails[i]);
                 }
@@ -69,27 +68,23 @@ public class Main {
                         continue;
                     }
                     else {
-                        liner = liner.replaceAll("<<","");
-                        liner = liner.replaceAll(">>","");
-
                         for (String j : headerFields) {
-                            if(liner.contains(j)) {
-                                liner = liner.replaceFirst(j,custMap.get(j));
+                            if(liner.contains("<<"+j+">>")) {
+                                liner = liner.replaceAll("<<"+j+">>",custMap.get(j));
                             }
                             else {
                                 continue;
                             }
                         }
-
-                    System.out.println(liner);
                     }
+
+                System.out.println(liner);
                 }
             
-            System.out.println(""); //separate out since printing on terminal
+            System.out.println(""); //separate each email on terminal
             }
         
         br.close();
-            
         }
         catch (IOException e) {
             System.out.println("Unable to read file.");
