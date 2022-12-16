@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        //javac -sourcepath src -d classes src/mailmerge/*.java
+        //javac -sourcepath src -d classes task01/src/mailmerge/*.java
         //java -cp classes mailmerge.Main <csv file> <template file>
         String custFile = args[0];
         String temFile = args[1];
